@@ -9,11 +9,16 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= image_tag @user.get_profile_image(100,100) %></td>
+            <td>
+              <%= link_to @user do %>
+              <%= image_tag @user.get_profile_image(100,100) %><br/>
+              <%= @user.name %>
+              <% end %>
+            </td>
             <td><%= link_to @book.title %></td>
             <td><%= @book.body %></td>
             <% if @book.user == current_user %>
-            <td><%= link_to "edit", edit_book_path(@book.id), method: :update, class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger" %></td>
             <% end %>
           </tr>
